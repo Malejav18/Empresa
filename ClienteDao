@@ -1,0 +1,106 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import dto.Cliente;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author white
+ */
+public class ClienteDao {
+    private List<Cliente> listaClientes;
+    private ObjectInputStream entrada;
+    private ObjectOutputStream salida;
+    private  String filePath = "cliente.dat";
+    /**
+     * 
+     */
+    public ClienteDao() {
+        listaClientes =new ArrayList<>();
+
+        File file = new File(filePath);
+
+        if(file.isFile()){
+            try{
+                this.entrada = new ObjectInputStream(new FileInputStream("cliente.dat"));
+                this.listaClientes = (List<Cliente>) entrada.readObject();
+                this.entrada.close();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                guardar();
+            }
+        }    
+    }
+        /**
+         * Función permite adicionar un objetopasajero a la lista de clientes
+         * @param cliente un objeto de la clase Cliente
+         * @return true si se adiciono el objeto a la list o false si no se adiciono
+         */
+        public void crear(Cliente cliente){
+            listaClientes.add(cliente);
+            guardar();
+            JOptionPane.showMessageDialog(null, "Un cliente ha sido registrado");
+        }
+        /**
+         * 
+         * @param id
+         * @return 
+         */
+        public Cliente leer(int id){
+            for (Cliente cliente : listaClientes) {
+                if(cliente.getIdCliente()== id)
+                    return (Cliente) cliente;
+            }
+            return null;
+       }
+       /**
+        * 
+        * @param index
+        * @param cliente
+        */
+        public void actualizar(int index,Cliente cliente){
+            listaClientes.set(index, cliente);
+        }
+        /**
+         * 
+         * @param pasajero 
+         */
+
+        public void borrar(Cliente cliente){
+            listaClientes.remove(cliente);
+        }
+        /**
+         * 
+         * @return 
+         */
+        public List<Cliente> leerTodo(){
+            return listaClientes;
+        }
+        /**
+         * 
+         */
+        public void guardar(){
+            try{
+                this.salida =new ObjectOutputStream(new FileOutputStream("cliente.dat"));
+                this.salida.writeObject(listaClientes);
+                this.salida.close();
+            }catch(Exception e){
+                 System.out.println(e.getMessage());
+            }    
+        }
+      //  public void consultar(){
+
+    //    }
+}
