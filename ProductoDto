@@ -1,0 +1,59 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dto;
+
+/**
+ *
+ * @author white
+ */
+public class Producto {
+    private String nombreProducto;
+    private int codigoProducto;
+    private int cantidadProducto;
+    private int precioU;
+    private String detalles;
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public int getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(int codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public int getCantidadProducto() {
+        return cantidadProducto;
+    }
+
+    public void setCantidadProducto(int cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
+    }
+
+    public int getPrecioU() {
+        return precioU;
+    }
+
+    public void setPrecioU(int precioU) {
+        this.precioU = precioU;
+    }
+
+    public String getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
+    
+}
